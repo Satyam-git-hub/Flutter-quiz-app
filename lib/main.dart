@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Quiz App',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.indigo, // Change the primary color
       ),
       home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
@@ -23,8 +23,8 @@ class WelcomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome to Quiz App'),
-        backgroundColor: Colors.teal,
+        title: Text('Welcome to the Quiz App'),
+        backgroundColor: Colors.indigo, // Change the app bar color
       ),
       body: Center(
         child: Column(
@@ -46,9 +46,9 @@ class WelcomeScreen extends StatelessWidget {
                 );
               },
               style: ElevatedButton.styleFrom(
-                primary: Colors.teal,
+                primary: Colors.indigo, // Change the button color
               ),
-              child: Text('Start Quiz', style: TextStyle(color: Colors.white)),
+              child: Text('Start Quiz', style: TextStyle(color: Colors.yellow)),
             ),
           ],
         ),
@@ -56,7 +56,6 @@ class WelcomeScreen extends StatelessWidget {
     );
   }
 }
-
 
 class QuizScreen extends StatefulWidget {
   @override
@@ -70,102 +69,69 @@ class _QuizScreenState extends State<QuizScreen> {
 
   List<Map<String, dynamic>> questions = [
     {
-      'question': 'What is the capital of France?',
+      'question': 'What is the capital of Germany?',
       'options': ['Berlin', 'Madrid', 'Paris', 'Rome'],
-      'correctIndex': 2,
+      'correctIndex': 0,
     },
     {
       'question': 'Which programming language is Flutter based on?',
       'options': ['Dart', 'Java', 'Python', 'C++'],
       'correctIndex': 0,
     },
-    {
-      'question': 'What is the largest mammal in the world?',
-      'options': ['Elephant', 'Blue Whale', 'Giraffe', 'Hippopotamus'],
-      'correctIndex': 1,
-    },
-    {
-      'question': 'Who wrote "Romeo and Juliet"?',
-      'options': ['Charles Dickens', 'Jane Austen', 'William Shakespeare', 'Mark Twain'],
-      'correctIndex': 2,
-    },
-    {
-      'question': 'What is the capital of Japan?',
-      'options': ['Beijing', 'Seoul', 'Tokyo', 'Bangkok'],
-      'correctIndex': 2,
-    },
-    {
-      'question': 'What is the capital of Australia?',
-      'options': ['Sydney', 'Melbourne', 'Canberra', 'Perth'],
-      'correctIndex': 2,
-    },
-    {
-      'question': 'Which is the largest ocean on Earth?',
-      'options': ['Atlantic Ocean', 'Indian Ocean', 'Southern Ocean', 'Pacific Ocean'],
-      'correctIndex': 3,
-    },
-    {
-      'question': 'Who developed the theory of relativity?',
-      'options': ['Isaac Newton', 'Albert Einstein', 'Galileo Galilei', 'Stephen Hawking'],
-      'correctIndex': 1,
-    },
     // Add more questions...
   ];
 
   void _checkAnswer(int selectedIndex) {
-  if (_currentIndex <= questions.length - 1 && !_submitted) {
-    if (selectedIndex == questions[_currentIndex]['correctIndex']) {
-      setState(() {
-        _score++;
-      });
+    if (_currentIndex <= questions.length - 1 && !_submitted) {
+      if (selectedIndex == questions[_currentIndex]['correctIndex']) {
+        setState(() {
+          _score++;
+        });
+      }
     }
   }
-}
-
 
   void _nextQuestion() {
-  setState(() {
-    if (_currentIndex < questions.length - 1 && !_submitted) {
-      _currentIndex++;
-    } else if (_currentIndex == questions.length - 1) {
-      _submitted = true;
-      _submitQuiz();
-    }
-  });
-}
-
+    setState(() {
+      if (_currentIndex < questions.length - 1 && !_submitted) {
+        _currentIndex++;
+      } else if (_currentIndex == questions.length - 1) {
+        _submitted = true;
+        _submitQuiz();
+      }
+    });
+  }
 
   void _previousQuestion() {
-  setState(() {
-    if (_currentIndex > 0 && !_submitted) {
-      _currentIndex--;
-    }
-  });
-}
+    setState(() {
+      if (_currentIndex > 0 && !_submitted) {
+        _currentIndex--;
+      }
+    });
+  }
 
   void _submitQuiz() {
-  setState(() {
-    _submitted = true;
-  });
+    setState(() {
+      _submitted = true;
+    });
 
-  showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Quiz Results'),
-      content: Text('Your Score: $_score / ${questions.length}'),
-      actions: [
-        TextButton(
-          onPressed: () {
-            _restartQuiz(); // Call _restartQuiz when Restart Quiz is pressed
-            Navigator.pop(context);
-          },
-          child: Text('Restart Quiz', style: TextStyle(color: Colors.teal)),
-        ),
-      ],
-    ),
-  );
-}
-
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Quiz Results'),
+        content: Text('Your Score: $_score / ${questions.length}'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              _restartQuiz(); // Call _restartQuiz when Restart Quiz is pressed
+              Navigator.pop(context);
+            },
+            child: Text('Restart Quiz', style: TextStyle(color: Colors.indigo)),
+          ),
+        ],
+      ),
+    );
+  }
 
   void _restartQuiz() {
     setState(() {
@@ -180,33 +146,7 @@ class _QuizScreenState extends State<QuizScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Quiz App'),
-        backgroundColor: Colors.teal,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.teal,
-              ),
-              child: Text(
-                'Quiz App',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('Home', style: TextStyle(color: Colors.teal)),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            // Add more drawer items...
-          ],
-        ),
+        backgroundColor: Colors.indigo,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -219,7 +159,7 @@ class _QuizScreenState extends State<QuizScreen> {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
-                color: Colors.teal,
+                color: Colors.indigo,
               ),
             ),
             SizedBox(height: 16),
@@ -249,7 +189,7 @@ class _QuizScreenState extends State<QuizScreen> {
                                     },
                               style: ElevatedButton.styleFrom(
                                 primary: Colors.white,
-                                onPrimary: Colors.teal,
+                                onPrimary: Colors.indigo,
                                 textStyle: TextStyle(fontSize: 16),
                               ),
                               child: Text(entry.value),
@@ -270,7 +210,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       _previousQuestion();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.teal,
+                      primary: Colors.indigo,
                     ),
                     child:
                         Text('Previous', style: TextStyle(color: Colors.white)),
@@ -283,7 +223,7 @@ class _QuizScreenState extends State<QuizScreen> {
                           _submitQuiz();
                         },
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
+                    primary: Colors.indigo,
                   ),
                   child: Text('Submit', style: TextStyle(color: Colors.white)),
                 ),
@@ -295,7 +235,7 @@ class _QuizScreenState extends State<QuizScreen> {
                         }
                       : null,
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.teal,
+                    primary: Colors.indigo,
                   ),
                   child: Text('Restart', style: TextStyle(color: Colors.white)),
                 ),
@@ -309,7 +249,7 @@ class _QuizScreenState extends State<QuizScreen> {
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
-                    color: Colors.teal,
+                    color: Colors.indigo,
                   ),
                 ),
               ),
@@ -323,7 +263,7 @@ class _QuizScreenState extends State<QuizScreen> {
           }
         },
         child: Icon(Icons.navigate_next),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.indigo,
       ),
     );
   }
