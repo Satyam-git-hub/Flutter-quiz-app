@@ -69,8 +69,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   List<Map<String, dynamic>> questions = [
     {
-      'question': 'What is the capital of Germany?',
-      'options': ['Berlin', 'Madrid', 'Paris', 'Rome'],
+      'question': 'What is UPF?',
+      'options': ['User plane function', 'Unified protocol function', 'user protocol function', 'unified plane function'],
       'correctIndex': 0,
     },
     {
@@ -78,7 +78,36 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['Dart', 'Java', 'Python', 'C++'],
       'correctIndex': 0,
     },
-    // Add more questions...
+    {
+      'question': 'Who won the FIFA World Cup in 2018?',
+      'options': ['Brazil', 'Germany', 'France', 'Argentina'],
+      'correctIndex': 2,
+    },
+    {
+      'question': 'Which country has won the most FIFA World Cup titles?',
+      'options': ['Brazil', 'Germany', 'Italy', 'Argentina'],
+      'correctIndex': 0,
+    },
+    {
+      'question': 'In which year did Lionel Messi win his first Ballon d\'Or?',
+      'options': ['2008', '2010', '2012', '2015'],
+      'correctIndex': 2,
+    },
+    {
+      'question': 'Which club has the most UEFA Champions League titles?',
+      'options': ['Real Madrid', 'Barcelona', 'Bayern Munich', 'AC Milan'],
+      'correctIndex': 0,
+    },
+    {
+      'question': 'Who is the all-time top scorer in the English Premier League?',
+      'options': ['Wayne Rooney', 'Alan Shearer', 'Thierry Henry', 'Frank Lampard'],
+      'correctIndex': 1,
+    },
+    {
+      'question': 'Which country hosted the first FIFA World Cup in 1930?',
+      'options': ['Brazil', 'Italy', 'Uruguay', 'Germany'],
+      'correctIndex': 2,
+    },
   ];
 
   void _checkAnswer(int selectedIndex) {
@@ -123,7 +152,7 @@ class _QuizScreenState extends State<QuizScreen> {
         actions: [
           TextButton(
             onPressed: () {
-              _restartQuiz(); // Call _restartQuiz when Restart Quiz is pressed
+              _restartQuiz();
               Navigator.pop(context);
             },
             child: Text('Restart Quiz', style: TextStyle(color: Colors.indigo)),
